@@ -464,7 +464,7 @@ const Judges = (props: Props) => {
                           downloadJudgeList(currentData, true, false);
                         }}
                       >
-                        Without name
+                        No Name
                       </button>
 
                       <button

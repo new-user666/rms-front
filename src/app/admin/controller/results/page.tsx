@@ -56,9 +56,17 @@ const page = async () => {
         categories={categories.data?.categories}
         skills={skills.data?.skills}
         teams = {teams.data?.teams}
+        published = {
+          result.data?.resultEnteredProgrammes?.filter(  (programme) => {
+            return programme.resultPublished === true;
+          }
+          )
+        }
       />
     </main>
   );
 };
 
 export default page;
+
+

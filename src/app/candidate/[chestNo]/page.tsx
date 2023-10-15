@@ -4,6 +4,9 @@ import {
   GetCandidateByChestNoDocument,
   GetCandidateByChestNoQuery,
   GetCandidateByChestNoQueryVariables,
+  Model,
+  Type,
+  Types,
 } from "@/gql/graphql";
 import { API_KEY } from "@/lib/env";
 import { getUrqlClient } from "@/lib/urql";
@@ -22,7 +25,31 @@ export default async function page({
     chestNO: params.chestNo,
   });
 
-  const candidate: Candidate = result.data?.candidateByChestNo as Candidate;
+  const candidate: Candidate = result?.data?.candidateByChestNo as Candidate;
+
+  let candidateArtsPoint = 0;
+
+   candidate?.candidateProgrammes?.map((prg , i)=>{
+    console.log(prg);
+    
+    if((prg.programme?.type as Types) == (Types.Single as Types) && (prg.programme?.model as Model) == (Model.Arts as Model)  && prg.programme?.resultPublished ){
+      console.log("Daaaaaa");
+      
+      candidateArtsPoint += prg.point ? prg.point : 0 
+    } 
+  })
+
+  let candidateSportsPoint = 0;
+
+  candidate?.candidateProgrammes?.map((prg , i)=>{
+   console.log(prg);
+   
+   if((prg.programme?.type as Types) == (Types.Single as Types) && (prg.programme?.model as Model) == (Model.Sports as Model)  && prg.programme?.resultPublished ){
+     console.log("Daaaaaa");
+     
+     candidateSportsPoint += prg.point ? prg.point : 0 
+   } 
+ })
 
   return (
     <main className="font-sans h-screen overflow-hidden flex overflow-y-auto">
@@ -79,13 +106,14 @@ export default async function page({
               <div className=" flex flex-row justify-around md:-mt-0 -mt-20 bigphone:-mt-32 float-right md:float-none grid-row gap-5 mr-6 md:grid-row-none md:mr-0">
                 <div className="md:bg-transparent bg-secondary md:h-16 md:w-16 bigphone:h-20 h-16 bigphone:w-20 w-16 rounded-xl">
                   <h1 className="font-bold text-center md:text-5xl text-3xl bigphone:text-4xl mt-1">
-                    {candidate?.individualPoint || 0}
+                    {/* {candidate?.individualPoint || 0} */}
+                    {candidateArtsPoint}
                   </h1>
                   <p className="text-lt text-center -mt-2">Arts</p>
                 </div>
                 <div className="md:bg-transparent bg-secondary md:h-16 md:w-16 bigphone:h-20 w-16 bigphone:w-20 h-16 rounded-xl">
                   <h1 className="font-bold text-center md:text-5xl text-3xl bigphone:text-4xl mt-1">
-                    {candidate?.individualSportsPoint || 0}
+                    {candidateSportsPoint}
                   </h1>
                   <p className="text-lt text-center -mt-2">Sports</p>
                 </div>
@@ -96,7 +124,7 @@ export default async function page({
       </div>
 
 
-      <ProgramAndResultDesktop candidate={candidate} />
+      <ProgramAndResultDesktop candidate={candidate} candidateArtsPoint={candidateArtsPoint} candidateSportsPoint={candidateSportsPoint} />
     </main>
   );
 }

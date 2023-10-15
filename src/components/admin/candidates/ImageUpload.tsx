@@ -28,7 +28,7 @@ const ImageUpload = () => {
       console.log(formData);
 
       const res = await fetch(
-        `https://realia23.azurewebsites.net/candidates/uploadMultiple`,
+        `https://rms-mu.vercel.app/candidates/uploadMultiple`,
         {
           method: "POST",
           body: formData,

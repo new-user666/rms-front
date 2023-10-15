@@ -4,7 +4,13 @@ import UserGallery from "@/components/admin/gallery/UserGallery";
 
 const page =async () => {
     
-  const result = await axios.get("https://realia23.azurewebsites.net/gallery");
+  const result = await axios.get(`https://rms-mu.vercel.app/gallery?${Date.now()}`, {
+    headers: {
+      'Cache-Control': 'no-cache',
+      'Pragma': 'no-cache',
+      'Expires': '0',
+    },
+  });
   
   return (
     <div>

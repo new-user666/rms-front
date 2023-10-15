@@ -6,8 +6,11 @@ import { Readable } from 'stream';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
 
- const data : any = req.query.data ;
- const SelectedProgrammes : any = req.query.SelectedProgrammes ;
+  console.log(req.body);
+  
+
+ const data : any = req.body.data ;
+ const SelectedProgrammes : any = req.body.SelectedProgrammes ;
   try {
     // Create a new workbook
     const workbook = new ExcelJS.Workbook();
@@ -111,30 +114,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       };
     });
 
-    //////////////////////   For adding image in excel  ///////////////////////////////////////
-    // const image = workbook.addImage({
-    //   filename: 'image.png',
-    //   extension: 'png',
-    // });
-    
-    // // Define the dimensions of the image
-    // const imageWidth = 200; // Width in pixels
-    // const imageHeight = 150; // Height in pixels
-    
-    // // Get the dimensions of the worksheet
-    // const worksheetWidth = (worksheet.pageSetup as any).pageWidth;
-    // const worksheetHeight = (worksheet.pageSetup as any).pageHeight;
-    
-    // // Calculate the position to center the image
-    // const x = (worksheetWidth - imageWidth) / 2;
-    // const y = (worksheetHeight - imageHeight) / 2;
-    
-    // // Add the image to the worksheet
-    // worksheet.addImage(image, {
-    //   tl: { col: 1, row: 1 }, // Position of the top-left corner of the image
-    //   ext: { width: imageWidth, height: imageHeight }, // Dimensions of the image
-    // });
-    ////////////////////////////////////////////////////////////////////////////////////////
+
 
     const setBlackBackground = (
       worksheet: any,
@@ -161,8 +141,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     var slno = 1
     data.forEach((item: any) => {
-      // console.log(item);
+      console.log(item.programCode ,  item.checkCode);
       if (SelectedProgrammes.includes(item.checkCode)) {
+        
         const subRow = worksheet.addRow(Object.values(item));
         subRow.eachCell((cell:any, num:any) => {
           cell.border = {
@@ -193,7 +174,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     // Create a stream to generate the Excel file
     const stream = new Readable();
-    stream.push(await workbook.xlsx.writeBuffer());
+    stream.push(buffer);
     stream.push(null);
 
     // Set the response headers to indicate an Excel file download

@@ -65,7 +65,7 @@ function Gallery(props: Props) {
 
     try {
       const res = await axios.delete(
-        `https://realia23.azurewebsites.net/gallery/${find.id}`
+        `https://rms-mu.vercel.app/gallery/${find.id}`
       );
       // console.log(props.result);
       toast.success("Image deleted successfully");

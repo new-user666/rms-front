@@ -156,7 +156,7 @@ const createGallery = () => {
       console.log(formData);
 
       const res = await axios.post(
-        "https://realia23.azurewebsites.net/gallery/many",
+        "https://rms-mu.vercel.app/gallery/many",
         formData
       );
       toast.success("Images Uploaded Successfully 🎉 preview will take some time to load...");

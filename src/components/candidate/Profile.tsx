@@ -10,6 +10,8 @@ import { useRouter } from "next/navigation";
 import NProgress from "nprogress";
 interface Props {
   candidate: Candidate;
+  candidateSportsPoint: number;
+  candidateArtsPoint: number;
 }
 
 export default function ProgramAndResultDesktop(props: Props) {
@@ -119,61 +121,55 @@ export default function ProgramAndResultDesktop(props: Props) {
             <hr className="border" />
             <div className="mx-5 py-3 flex gap-3">
               <div
-                className={`${
-                  allOrIndividualOrGroup === "all"
-                    ? specialButtonProgram.div
-                    : commonButtonProgram.div
-                }`}
+                className={`${allOrIndividualOrGroup === "all"
+                  ? specialButtonProgram.div
+                  : commonButtonProgram.div
+                  }`}
               >
                 <button
                   onClick={() => {
                     setAllOrIndividualOrGroup("all");
                   }}
-                  className={`${
-                    allOrIndividualOrGroup === "all"
-                      ? specialButtonProgram.button
-                      : commonButtonProgram.button
-                  }`}
+                  className={`${allOrIndividualOrGroup === "all"
+                    ? specialButtonProgram.button
+                    : commonButtonProgram.button
+                    }`}
                 >
                   All
                 </button>
               </div>
               <div
-                className={`${
-                  allOrIndividualOrGroup === "individual"
-                    ? specialButtonProgram.div
-                    : commonButtonProgram.div
-                }`}
+                className={`${allOrIndividualOrGroup === "individual"
+                  ? specialButtonProgram.div
+                  : commonButtonProgram.div
+                  }`}
               >
                 <button
                   onClick={() => {
                     setAllOrIndividualOrGroup("individual");
                   }}
-                  className={`${
-                    allOrIndividualOrGroup === "individual"
-                      ? specialButtonProgram.button
-                      : commonButtonProgram.button
-                  }`}
+                  className={`${allOrIndividualOrGroup === "individual"
+                    ? specialButtonProgram.button
+                    : commonButtonProgram.button
+                    }`}
                 >
                   Individual
                 </button>
               </div>
               <div
-                className={`${
-                  allOrIndividualOrGroup === "group"
-                    ? specialButtonProgram.div
-                    : commonButtonProgram.div
-                }`}
+                className={`${allOrIndividualOrGroup === "group"
+                  ? specialButtonProgram.div
+                  : commonButtonProgram.div
+                  }`}
               >
                 <button
                   onClick={() => {
                     setAllOrIndividualOrGroup("group");
                   }}
-                  className={`${
-                    allOrIndividualOrGroup === "group"
-                      ? specialButtonProgram.button
-                      : commonButtonProgram.button
-                  }`}
+                  className={`${allOrIndividualOrGroup === "group"
+                    ? specialButtonProgram.button
+                    : commonButtonProgram.button
+                    }`}
                 >
                   Group
                 </button>
@@ -233,61 +229,55 @@ export default function ProgramAndResultDesktop(props: Props) {
             <hr className="border" />
             <div className="mx-5 py-3 flex gap-3">
               <div
-                className={`${
-                  allOrIndividualOrGroupResult === "all"
-                    ? specialButtonResults.div
-                    : commonButtonResults.div
-                }`}
+                className={`${allOrIndividualOrGroupResult === "all"
+                  ? specialButtonResults.div
+                  : commonButtonResults.div
+                  }`}
               >
                 <button
                   onClick={() => {
                     setAllOrIndividualOrGroupResult("all");
                   }}
-                  className={`${
-                    allOrIndividualOrGroupResult === "all"
-                      ? specialButtonResults.button
-                      : commonButtonResults.button
-                  }`}
+                  className={`${allOrIndividualOrGroupResult === "all"
+                    ? specialButtonResults.button
+                    : commonButtonResults.button
+                    }`}
                 >
                   All
                 </button>
               </div>
               <div
-                className={`${
-                  allOrIndividualOrGroupResult === "individual"
-                    ? specialButtonResults.div
-                    : commonButtonResults.div
-                }`}
+                className={`${allOrIndividualOrGroupResult === "individual"
+                  ? specialButtonResults.div
+                  : commonButtonResults.div
+                  }`}
               >
                 <button
                   onClick={() => {
                     setAllOrIndividualOrGroupResult("individual");
                   }}
-                  className={`${
-                    allOrIndividualOrGroupResult === "individual"
-                      ? specialButtonResults.button
-                      : commonButtonResults.button
-                  }`}
+                  className={`${allOrIndividualOrGroupResult === "individual"
+                    ? specialButtonResults.button
+                    : commonButtonResults.button
+                    }`}
                 >
                   Individual
                 </button>
               </div>
               <div
-                className={`${
-                  allOrIndividualOrGroupResult === "group"
-                    ? specialButtonResults.div
-                    : commonButtonResults.div
-                }`}
+                className={`${allOrIndividualOrGroupResult === "group"
+                  ? specialButtonResults.div
+                  : commonButtonResults.div
+                  }`}
               >
                 <button
                   onClick={() => {
                     setAllOrIndividualOrGroupResult("group");
                   }}
-                  className={`${
-                    allOrIndividualOrGroupResult === "group"
-                      ? specialButtonResults.button
-                      : commonButtonResults.button
-                  }`}
+                  className={`${allOrIndividualOrGroupResult === "group"
+                    ? specialButtonResults.button
+                    : commonButtonResults.button
+                    }`}
                 >
                   Group
                 </button>
@@ -386,41 +376,37 @@ export default function ProgramAndResultDesktop(props: Props) {
           {/* slider */}
           <div className="h-16 w-full flex items-center gap-5 justify-center">
             <div
-              className={`${
-                programsOrResults === "programs"
-                  ? programsButton.div
-                  : resultsButton.div
-              }`}
+              className={`${programsOrResults === "programs"
+                ? programsButton.div
+                : resultsButton.div
+                }`}
             >
               <button
                 onClick={() => {
                   setProgramsOrResults("programs");
                 }}
-                className={`${
-                  programsOrResults === "programs"
-                    ? programsButton.button
-                    : resultsButton.button
-                }`}
+                className={`${programsOrResults === "programs"
+                  ? programsButton.button
+                  : resultsButton.button
+                  }`}
               >
                 Programs
               </button>
             </div>
             <div
-              className={`${
-                programsOrResults === "results"
-                  ? programsButton.div
-                  : resultsButton.div
-              }`}
+              className={`${programsOrResults === "results"
+                ? programsButton.div
+                : resultsButton.div
+                }`}
             >
               <button
                 onClick={() => {
                   setProgramsOrResults("results");
                 }}
-                className={`${
-                  programsOrResults === "results"
-                    ? programsButton.button
-                    : resultsButton.button
-                }`}
+                className={`${programsOrResults === "results"
+                  ? programsButton.button
+                  : resultsButton.button
+                  }`}
               >
                 Results
               </button>
@@ -446,11 +432,10 @@ export default function ProgramAndResultDesktop(props: Props) {
             <div
               className="rounded-full h-36 w-36 border-4 bg-white flex flex-col items-end relative bg-cover"
               style={{
-                backgroundImage: `url(${
-                  props?.candidate?.imageId
-                    ? `https://drive.google.com/uc?id=${props?.candidate?.imageId}`
-                    : "https://banner2.cleanpng.com/20180410/bbw/kisspng-avatar-user-medicine-surgery-patient-avatar-5acc9f7a7cb983.0104600115233596105109.jpg"
-                })`,
+                backgroundImage: `url(${props?.candidate?.imageId
+                  ? `https://drive.google.com/uc?id=${props?.candidate?.imageId}`
+                  : "https://banner2.cleanpng.com/20180410/bbw/kisspng-avatar-user-medicine-surgery-patient-avatar-5acc9f7a7cb983.0104600115233596105109.jpg"
+                  })`,
               }}
             >
               {/* <img
@@ -491,14 +476,14 @@ export default function ProgramAndResultDesktop(props: Props) {
                   {/* arts */}
                   <div className="bg-accent rounded-xl h-16 w-16 bigphone:h-20 bigphone:w-20 flex flex-col items-center">
                     <h1 className="text-3xl bigphone:text-4xl font-bold mt-2">
-                      {props?.candidate?.individualPoint || 0}
+                      {props?.candidateArtsPoint || 0}
                     </h1>
                     <p className="-mt-2 text-sm">Arts</p>
                   </div>
                   {/* sports */}
                   <div className="bg-accent rounded-xl h-16 w-16 bigphone:h-20 bigphone:w-20 flex flex-col items-center">
                     <h1 className="text-3xl bigphone:text-4xl font-bold mt-2">
-                      {props?.candidate?.individualSportsPoint || 0}
+                      {props?.candidateSportsPoint || 0}
                     </h1>
                     <p className="-mt-2 text-sm">Sports</p>
                   </div>
@@ -508,41 +493,37 @@ export default function ProgramAndResultDesktop(props: Props) {
             {/* slider */}
             <div className="h-1/10 w-full flex items-center gap-5 justify-center pb-3">
               <div
-                className={`${
-                  programsOrResults === "programs"
-                    ? programsButton.div
-                    : resultsButton.div
-                }`}
+                className={`${programsOrResults === "programs"
+                  ? programsButton.div
+                  : resultsButton.div
+                  }`}
               >
                 <button
                   onClick={() => {
                     setProgramsOrResults("programs");
                   }}
-                  className={`${
-                    programsOrResults === "programs"
-                      ? programsButton.button
-                      : resultsButton.button
-                  }`}
+                  className={`${programsOrResults === "programs"
+                    ? programsButton.button
+                    : resultsButton.button
+                    }`}
                 >
                   Programs
                 </button>
               </div>
               <div
-                className={`${
-                  programsOrResults === "results"
-                    ? programsButton.div
-                    : resultsButton.div
-                }`}
+                className={`${programsOrResults === "results"
+                  ? programsButton.div
+                  : resultsButton.div
+                  }`}
               >
                 <button
                   onClick={() => {
                     setProgramsOrResults("results");
                   }}
-                  className={`${
-                    programsOrResults === "results"
-                      ? programsButton.button
-                      : resultsButton.button
-                  }`}
+                  className={`${programsOrResults === "results"
+                    ? programsButton.button
+                    : resultsButton.button
+                    }`}
                 >
                   Results
                 </button>

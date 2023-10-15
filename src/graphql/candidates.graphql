@@ -69,14 +69,6 @@ query GetCandidateByChestNo($api_key: String!, $chestNO: String!) {
     id
     chestNO
     name
-    candidateProgrammes {
-      programme {
-        name
-        programCode
-        date
-        resultPublished
-      }
-    }
     category {
       id
       name
@@ -92,10 +84,12 @@ query GetCandidateByChestNo($api_key: String!, $chestNO: String!) {
       id
       programme {
         id
+        resultPublished
         type
         programCode
         date
         name
+        model
       }
       grade {
         id

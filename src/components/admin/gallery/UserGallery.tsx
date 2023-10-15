@@ -129,7 +129,7 @@ function userGallery(props: Props) {
               </svg>
             </button>
             <img
-              className="w-[90%] h-96 mx-auto mt-24 mb-2 object-cover rrounded-md"
+              className="w-[90%] h-96 mx-auto mt-24 mb-2 object-cover rounded-md"
               src={slectedImage}
               alt=""
             />
@@ -189,7 +189,7 @@ function userGallery(props: Props) {
               <div className="hidden lg:grid mt-4 grid-cols-8 grid-rows-7 gap-4  w-full h-full m-b-5 overflow-y-auto px-5  pb-5">
                 {item[0] && (
                   <div
-                    className={`bg-base-200 rrounded-md  col-span-2 row-span-3 col-start-1 row-start-3 `}
+                    className={`bg-base-200 rounded-md  col-span-2 row-span-3 col-start-1 row-start-3 `}
                     style={{
                       backgroundImage: `url(${item[0]})`,
                       backgroundSize: "cover",
@@ -326,7 +326,7 @@ function userGallery(props: Props) {
           <>
             <div className="hidden lg:grid mt-4 grid-cols-8 grid-rows-7 gap-4  w-full h-full m-b-5 overflow-y-auto px-5 ">
               <div
-                className={` animate-pulse rrounded-md bg-base-200 col-span-2 row-span-3 col-start-1 row-start-3 `}
+                className={` animate-pulse rounded-md bg-base-200 col-span-2 row-span-3 col-start-1 row-start-3 `}
               ></div>
 
               <div className=" animate-pulse rounded-md bg-base-200   col-span-2 row-span-2 col-start-1 row-star-1"></div>
@@ -359,7 +359,7 @@ function userGallery(props: Props) {
             return (
               <div className=" hidden sm:grid lg:hidden grid-cols-6 grid-rows-9 gap-4  w-full h-full m-b-5 overflow-y-auto mt-4 px-5">
                 <div
-                  className="bg-base-200 rrounded-md col-span-2 row-span-2"
+                  className="bg-base-200rounded-md col-span-2 row-span-2"
                   style={{
                     backgroundImage: `url(${item[0]})`,
                     backgroundSize: "cover",
@@ -368,7 +368,7 @@ function userGallery(props: Props) {
                   onClick={() => handleOpen(item[0])}
                 ></div>
                 <div
-                  className="bg-base-200 rrounded-md col-span-2 row-span-3 col-start-1 row-start-3"
+                  className="bg-base-200rounded-md col-span-2 row-span-3 col-start-1 row-start-3"
                   style={{
                     backgroundImage: `url(${item[1]})`,
                     backgroundSize: "cover",
@@ -377,7 +377,7 @@ function userGallery(props: Props) {
                   onClick={() => handleOpen(item[1])}
                 ></div>
                 <div
-                  className="bg-base-200 rrounded-md col-span-2 row-span-2 col-start-1 row-start-6"
+                  className="bg-base-200rounded-md col-span-2 row-span-2 col-start-1 row-start-6"
                   style={{
                     backgroundImage: `url(${item[2]})`,
                     backgroundSize: "cover",
@@ -386,7 +386,7 @@ function userGallery(props: Props) {
                   onClick={() => handleOpen(item[2])}
                 ></div>
                 <div
-                  className="bg-base-200 rrounded-md col-span-2 row-span-2 col-start-1 row-start-8"
+                  className="bg-base-200rounded-md col-span-2 row-span-2 col-start-1 row-start-8"
                   style={{
                     backgroundImage: `url(${item[3]})`,
                     backgroundSize: "cover",
@@ -395,7 +395,7 @@ function userGallery(props: Props) {
                   onClick={() => handleOpen(item[3])}
                 ></div>
                 <div
-                  className="bg-base-200 rrounded-md col-span-2 row-span-3 col-start-3 row-start-1"
+                  className="bg-base-200rounded-md col-span-2 row-span-3 col-start-3 row-start-1"
                   style={{
                     backgroundImage: `url(${item[4]})`,
                     backgroundSize: "cover",
@@ -404,7 +404,7 @@ function userGallery(props: Props) {
                   onClick={() => handleOpen(item[4])}
                 ></div>
                 <div
-                  className="bg-base-200 rrounded-md col-span-2 row-span-2 col-start-3 row-start-4"
+                  className="bg-base-200rounded-md col-span-2 row-span-2 col-start-3 row-start-4"
                   style={{
                     backgroundImage: `url(${item[5]})`,
                     backgroundSize: "cover",
@@ -413,7 +413,7 @@ function userGallery(props: Props) {
                   onClick={() => handleOpen(item[5])}
                 ></div>
                 <div
-                  className="bg-base-200 rrounded-md col-span-2 row-span-2 col-start-3 row-start-6"
+                  className="bg-base-200rounded-md col-span-2 row-span-2 col-start-3 row-start-6"
                   style={{
                     backgroundImage: `url(${item[6]})`,
                     backgroundSize: "cover",
@@ -422,7 +422,7 @@ function userGallery(props: Props) {
                   onClick={() => handleOpen(item[6])}
                 ></div>
                 <div
-                  className="bg-base-200 rrounded-md col-span-2 row-span-2 col-start-3 row-start-8"
+                  className="bg-base-200rounded-md col-span-2 row-span-2 col-start-3 row-start-8"
                   style={{
                     backgroundImage: `url(${item[7]})`,
                     backgroundSize: "cover",
@@ -431,7 +431,7 @@ function userGallery(props: Props) {
                   onClick={() => handleOpen(item[7])}
                 ></div>
                 <div
-                  className="bg-base-200 rrounded-md col-span-2 row-span-2 col-start-5 row-start-1"
+                  className="bg-base-200rounded-md col-span-2 row-span-2 col-start-5 row-start-1"
                   style={{
                     backgroundImage: `url(${item[8]})`,
                     backgroundSize: "cover",
@@ -440,7 +440,7 @@ function userGallery(props: Props) {
                   onClick={() => handleOpen(item[8])}
                 ></div>
                 <div
-                  className="bg-base-200 rrounded-md col-span-2 row-span-2 col-start-5 row-start-3"
+                  className="bg-base-200rounded-md col-span-2 row-span-2 col-start-5 row-start-3"
                   style={{
                     backgroundImage: `url(${item[9]})`,
                     backgroundSize: "cover",
@@ -449,7 +449,7 @@ function userGallery(props: Props) {
                   onClick={() => handleOpen(item[9])}
                 ></div>
                 <div
-                  className="bg-base-200 rrounded-md col-span-2 row-span-3 col-start-5 row-start-5"
+                  className="bg-base-200rounded-md col-span-2 row-span-3 col-start-5 row-start-5"
                   style={{
                     backgroundImage: `url(${item[10]})`,
                     backgroundSize: "cover",
@@ -458,7 +458,7 @@ function userGallery(props: Props) {
                   onClick={() => handleOpen(item[10])}
                 ></div>
                 <div
-                  className="bg-base-200 rrounded-md col-span-2 row-span-2 col-start-5 row-start-8"
+                  className="bg-base-200rounded-md col-span-2 row-span-2 col-start-5 row-start-8"
                   style={{
                     backgroundImage: `url(${item[11]})`,
                     backgroundSize: "cover",
@@ -472,18 +472,18 @@ function userGallery(props: Props) {
         ) : (
           <>
             <div className=" hidden sm:grid lg:hidden grid-cols-6 grid-rows-9 gap-4  w-full h-full m-b-5 overflow-y-auto mt-4 px-5">
-              <div className=" rrounded-md bg-base-200 animate-pulse col-span-2 row-span-2"></div>
-              <div className=" rrounded-md bg-base-200 animate-pulse col-span-2 row-span-3 col-start-1 row-start-3"></div>
-              <div className=" rrounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-1 row-start-6"></div>
-              <div className=" rrounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-1 row-start-8"></div>
-              <div className=" rrounded-md bg-base-200 animate-pulse col-span-2 row-span-3 col-start-3 row-start-1"></div>
-              <div className=" rrounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-3 row-start-4"></div>
-              <div className=" rrounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-3 row-start-6"></div>
-              <div className=" rrounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-3 row-start-8"></div>
-              <div className=" rrounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-5 row-start-1"></div>
-              <div className=" rrounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-5 row-start-3"></div>
-              <div className=" rrounded-md bg-base-200 animate-pulse col-span-2 row-span-3 col-start-5 row-start-5"></div>
-              <div className=" rrounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-5 row-start-8"></div>
+              <div className="rounded-md bg-base-200 animate-pulse col-span-2 row-span-2"></div>
+              <div className="rounded-md bg-base-200 animate-pulse col-span-2 row-span-3 col-start-1 row-start-3"></div>
+              <div className="rounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-1 row-start-6"></div>
+              <div className="rounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-1 row-start-8"></div>
+              <div className="rounded-md bg-base-200 animate-pulse col-span-2 row-span-3 col-start-3 row-start-1"></div>
+              <div className="rounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-3 row-start-4"></div>
+              <div className="rounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-3 row-start-6"></div>
+              <div className="rounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-3 row-start-8"></div>
+              <div className="rounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-5 row-start-1"></div>
+              <div className="rounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-5 row-start-3"></div>
+              <div className="rounded-md bg-base-200 animate-pulse col-span-2 row-span-3 col-start-5 row-start-5"></div>
+              <div className="rounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-5 row-start-8"></div>
             </div>
           </>
         )}
@@ -493,7 +493,7 @@ function userGallery(props: Props) {
             return (
               <div className=" sm:hidden grid grid-cols-4 grid-rows-9 gap-4 w-full h-full m-b-5 overflow-y-auto mt-4 px-5 pb-5">
                 <div
-                  className=" bg-base-200 rrounded-md col-span-2 row-span-2"
+                  className=" bg-base-200 rounded-md col-span-2 row-span-2"
                   style={{
                     backgroundImage: `url(   ${item[0]})`,
                     backgroundSize: "cover",
@@ -502,7 +502,7 @@ function userGallery(props: Props) {
                   onClick={() => handleOpen(item[0])}
                 ></div>
                 <div
-                  className=" bg-base-200 rrounded-md col-span-2 col-start-1 row-start-3"
+                  className=" bg-base-200 rounded-md col-span-2 col-start-1 row-start-3"
                   style={{
                     backgroundImage: `url(   ${item[1]})`,
                     backgroundSize: "cover",
@@ -511,7 +511,7 @@ function userGallery(props: Props) {
                   onClick={() => handleOpen(item[1])}
                 ></div>
                 <div
-                  className=" bg-base-200 rrounded-md col-span-2 col-start-1 row-start-4"
+                  className=" bg-base-200 rounded-md col-span-2 col-start-1 row-start-4"
                   style={{
                     backgroundImage: `url(   ${item[2]})`,
                     backgroundSize: "cover",
@@ -520,7 +520,7 @@ function userGallery(props: Props) {
                   onClick={() => handleOpen(item[2])}
                 ></div>
                 <div
-                  className=" bg-base-200 rrounded-md col-span-2 col-start-1 row-start-7"
+                  className=" bg-base-200 rounded-md col-span-2 col-start-1 row-start-7"
                   style={{
                     backgroundImage: `url(   ${item[3]})`,
                     backgroundSize: "cover",
@@ -529,7 +529,7 @@ function userGallery(props: Props) {
                   onClick={() => handleOpen(item[3])}
                 ></div>
                 <div
-                  className=" bg-base-200 rrounded-md col-span-2 row-span-2 col-start-1 row-start-8"
+                  className=" bg-base-200 rounded-md col-span-2 row-span-2 col-start-1 row-start-8"
                   style={{
                     backgroundImage: `url(   ${item[4]})`,
                     backgroundSize: "cover",
@@ -538,7 +538,7 @@ function userGallery(props: Props) {
                   onClick={() => handleOpen(item[4])}
                 ></div>
                 <div
-                  className=" bg-base-200 rrounded-md col-span-2 row-span-2 col-start-3 row-start-1"
+                  className=" bg-base-200 rounded-md col-span-2 row-span-2 col-start-3 row-start-1"
                   style={{
                     backgroundImage: `url(   ${item[5]})`,
                     backgroundSize: "cover",
@@ -547,7 +547,7 @@ function userGallery(props: Props) {
                   onClick={() => handleOpen(item[5])}
                 ></div>
                 <div
-                  className=" bg-base-200 rrounded-md col-span-2 col-start-3 row-start-3"
+                  className=" bg-base-200 rounded-md col-span-2 col-start-3 row-start-3"
                   style={{
                     backgroundImage: `url(   ${item[6]})`,
                     backgroundSize: "cover",
@@ -556,7 +556,7 @@ function userGallery(props: Props) {
                   onClick={() => handleOpen(item[6])}
                 ></div>
                 <div
-                  className=" bg-base-200 rrounded-md col-span-2 col-start-3 row-start-4"
+                  className=" bg-base-200 rounded-md col-span-2 col-start-3 row-start-4"
                   style={{
                     backgroundImage: `url(   ${item[7]})`,
                     backgroundSize: "cover",
@@ -565,7 +565,7 @@ function userGallery(props: Props) {
                   onClick={() => handleOpen(item[7])}
                 ></div>
                 <div
-                  className=" bg-base-200 rrounded-md col-span-2 row-span-2 col-start-1 row-start-5"
+                  className=" bg-base-200 rounded-md col-span-2 row-span-2 col-start-1 row-start-5"
                   style={{
                     backgroundImage: `url(   ${item[8]})`,
                     backgroundSize: "cover",
@@ -574,7 +574,7 @@ function userGallery(props: Props) {
                   onClick={() => handleOpen(item[8])}
                 ></div>
                 <div
-                  className=" bg-base-200 rrounded-md col-span-2 row-span-2 col-start-3 row-start-5"
+                  className=" bg-base-200 rounded-md col-span-2 row-span-2 col-start-3 row-start-5"
                   style={{
                     backgroundImage: `url(   ${item[9]})`,
                     backgroundSize: "cover",
@@ -583,7 +583,7 @@ function userGallery(props: Props) {
                   onClick={() => handleOpen(item[9])}
                 ></div>
                 <div
-                  className=" bg-base-200 rrounded-md col-span-2 row-span-2 col-start-3 row-start-7"
+                  className=" bg-base-200 rounded-md col-span-2 row-span-2 col-start-3 row-start-7"
                   style={{
                     backgroundImage: `url(   ${item[10]})`,
                     backgroundSize: "cover",
@@ -593,7 +593,7 @@ function userGallery(props: Props) {
                 ></div>
 
                 <div
-                  className=" bg-base-200 rrounded-md col-span-2 col-start-3 row-start-9"
+                  className=" bg-base-200 rounded-md col-span-2 col-start-3 row-start-9"
                   style={{
                     backgroundImage: `url(   ${item[11]})`,
                     backgroundSize: "cover",
@@ -607,18 +607,18 @@ function userGallery(props: Props) {
         ) : (
           <>
             <div className=" sm:hidden grid grid-cols-4 grid-rows-9 gap-4 w-full h-full m-b-5 overflow-y-auto mt-4 px-5 pb-5">
-              <div className=" rrounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-1 row-start-2"></div>
-              <div className=" rrounded-md bg-base-200 animate-pulse col-span-2 col-start-1 row-start-4"></div>
-              <div className=" rrounded-md bg-base-200 animate-pulse col-span-2 col-start-1 row-start-5"></div>
-              <div className=" rrounded-md bg-base-200 animate-pulse col-span-2 col-start-1 row-start-1"></div>
-              <div className=" rrounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-1 row-start-8"></div>
-              <div className=" rrounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-3 row-start-1"></div>
-              <div className=" rrounded-md bg-base-200 animate-pulse col-span-2 col-start-3 row-start-3"></div>
-              <div className=" rrounded-md bg-base-200 animate-pulse col-span-2 col-start-3 row-start-4"></div>
-              <div className=" rrounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-1 row-start-6"></div>
-              <div className=" rrounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-3 row-start-5"></div>
-              <div className=" rrounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-3 row-start-7"></div>
-              <div className=" rrounded-md bg-base-200 animate-pulse col-span-2 col-start-3 row-start-9"></div>
+              <div className=" rounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-1 row-start-2"></div>
+              <div className=" rounded-md bg-base-200 animate-pulse col-span-2 col-start-1 row-start-4"></div>
+              <div className=" rounded-md bg-base-200 animate-pulse col-span-2 col-start-1 row-start-5"></div>
+              <div className=" rounded-md bg-base-200 animate-pulse col-span-2 col-start-1 row-start-1"></div>
+              <div className=" rounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-1 row-start-8"></div>
+              <div className=" rounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-3 row-start-1"></div>
+              <div className=" rounded-md bg-base-200 animate-pulse col-span-2 col-start-3 row-start-3"></div>
+              <div className=" rounded-md bg-base-200 animate-pulse col-span-2 col-start-3 row-start-4"></div>
+              <div className=" rounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-1 row-start-6"></div>
+              <div className=" rounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-3 row-start-5"></div>
+              <div className=" rounded-md bg-base-200 animate-pulse col-span-2 row-span-2 col-start-3 row-start-7"></div>
+              <div className=" rounded-md bg-base-200 animate-pulse col-span-2 col-start-3 row-start-9"></div>
             </div>
           </>
         )}
@@ -633,7 +633,7 @@ function userGallery(props: Props) {
    
         {  
           slideShowOpen &&  <div>
- 
+            
             <SlideShow data={imageData as any} setSlideShowOpen={setSlideShowOpen}/>
           </div>
           

@@ -29,8 +29,14 @@ const page = async () => {
     },
   ];
 
-  const result = await axios.get("https://realia23.azurewebsites.net/gallery");
-  const h = data[0]
+  const result = await axios.get(`https://rms-mu.vercel.app/gallery?${Date.now()}`, {
+    headers: {
+      'Cache-Control': 'no-cache',
+      'Pragma': 'no-cache',
+      'Expires': '0',
+    },
+  });
+   const h = data[0]
   return (
     <main className="w-full h-full flex ">
       <Gallery key={1} result={result.data}  />

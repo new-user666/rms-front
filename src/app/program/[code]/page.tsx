@@ -22,11 +22,29 @@ export default async function page({ params }: { params: { code: string } }) {
     programCode: params.code,
   });
 
-  const programme: Programme = result?.data?.programmeByCode as Programme;
+
+  let programme: Programme = result?.data?.programmeByCode as Programme;
+
+
+
+  if (!programme?.resultPublished) {
+    programme = {
+      ...programme,
+      candidateProgramme: programme?.candidateProgramme?.map((cp, i) => {
+        return {
+          grade: null,
+          position: null,
+          point: null,
+          candidate: cp?.candidate
+        }
+      })
+    }
+  }
+
 
   return (
     <main className="bg-accent w-screen h-screen ">
-      
+
       {/* Mobile View */}
       <MobileView programme={programme} />
       {/* Tab View */}
