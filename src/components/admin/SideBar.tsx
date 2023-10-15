@@ -28,11 +28,12 @@ import {
   SkillIcon,
   GradeIcon,
   PositionIcon,
-  TeamIcon
+  TeamIcon,
 } from "@/icons/sidebar";
 import { useRouter } from "next/navigation";
 import React, { useContext, useEffect, useState } from "react";
 import { OperationResult, useMutation } from "urql";
+import NProgress from "nprogress";
 
 const AdminNavs = [
   {
@@ -186,24 +187,30 @@ const SideBar = () => {
 
   const [state, LogoutExecute] = useMutation(LogOutUserDocument);
 
+  const [routerButtonClicked, setRouterButtonClicked] = useState(false);
+  NProgress.configure({ showSpinner: false });
+
   const LogOut = async () => {
     const logout: OperationResult<
       LogOutUserMutation,
       LogOutUserMutationVariables
     > = await LogoutExecute({});
+    setRouterButtonClicked(true);
     router.push("/login");
   };
 
   return (
     <>
       <div
-        className={`${isOpen ? "w-56" : "w-20"
-          } overflow-hidden transition-all duration-500 text-base-100  bg-primary hidden  lg:flex flex-col p-4`}
+        className={`${
+          isOpen ? "w-56" : "w-20"
+        } overflow-hidden transition-all duration-500 text-base-100  bg-primary hidden  lg:flex flex-col p-4`}
       >
         <div className="p-0 w-1">
           <div
-            className={` px-0 flex ${isOpen ? "w-40" : "w-12 items-center justify-center"
-              }`}
+            className={` px-0 flex ${
+              isOpen ? "w-40" : "w-12 items-center justify-center"
+            }`}
           >
             <label className="swap w-12 my-2">
               {isOpen ? (
@@ -221,27 +228,37 @@ const SideBar = () => {
               )}
             </label>
             <span
-              className={` text-base text-center font-bold my-auto ${isOpen ? "flex" : "hidden "
-                }`}
+              className={` text-base text-center font-bold my-auto ${
+                isOpen ? "flex" : "hidden "
+              }`}
             >
               Realia 2k23
             </span>
           </div>
         </div>
         <ul
-          className={`menu h-full w-full ${isOpen ? "" : "px-0"
-            } transition-all flex flex-col justify-between`}
+          className={`menu h-full w-full ${
+            isOpen ? "" : "px-0"
+          } transition-all flex flex-col justify-between`}
         >
           <div>
-            <li className="p-0 w-1" onClick={() => router.push("/admin")}>
+            <li
+              className="p-0 w-1"
+              onClick={() => {
+                setRouterButtonClicked(true);
+                router.push("/admin");
+              }}
+            >
               <p
-                className={` px-0 flex ${isOpen ? "w-40" : "w-12 items-center justify-center"
-                  }`}
+                className={` px-0 flex ${
+                  isOpen ? "w-40" : "w-12 items-center justify-center"
+                }`}
               >
                 <Dashoard className="w-8 h-8" />
                 <span
-                  className={` text-base text-center font-bold ${isOpen ? "flex" : "hidden "
-                    }`}
+                  className={` text-base text-center font-bold ${
+                    isOpen ? "flex" : "hidden "
+                  }`}
                 >
                   Dashboard
                 </span>
@@ -252,16 +269,21 @@ const SideBar = () => {
               <li
                 key={index}
                 className="p-0"
-                onClick={() => router.push(`/admin/${nav.nav}`)}
+                onClick={() => {
+                  setRouterButtonClicked(true);
+                  router.push(`/admin/${nav.nav}`);
+                }}
               >
                 <p
-                  className={` px-0 flex ${isOpen ? "w-40" : "w-12 items-center justify-center "
-                    }`}
+                  className={` px-0 flex ${
+                    isOpen ? "w-40" : "w-12 items-center justify-center "
+                  }`}
                 >
                   {nav.icon}
                   <span
-                    className={` text-base text-center font-bold ${isOpen ? "flex" : "hidden "
-                      }`}
+                    className={` text-base text-center font-bold ${
+                      isOpen ? "flex" : "hidden "
+                    }`}
                   >
                     {nav.name}
                   </span>
@@ -272,13 +294,15 @@ const SideBar = () => {
 
           <li className="p-0 w-1" onClick={LogOut}>
             <p
-              className={` px-0 flex ${isOpen ? "w-40" : "w-12 items-center justify-center"
-                }`}
+              className={` px-0 flex ${
+                isOpen ? "w-40" : "w-12 items-center justify-center"
+              }`}
             >
               <LogOutIcon className="w-8 h-8 text-white" />
               <span
-                className={` text-base text-center font-bold  ${isOpen ? "flex" : "hidden "
-                  }`}
+                className={` text-base text-center font-bold  ${
+                  isOpen ? "flex" : "hidden "
+                }`}
               >
                 Logout
               </span>
@@ -287,17 +311,21 @@ const SideBar = () => {
         </ul>
       </div>
 
-      <div onClick={() => {
-        setIsSideBarOnMobile(true)
-      }}>
-
+      <div
+        onClick={() => {
+          setIsSideBarOnMobile(true);
+        }}
+      >
         <Menu2Icon className="w-6 h-6 fill-secondary absolute top-6 right-10 lg:hidden" />
       </div>
-      {
-        isSideBarOnMobile && (<div className="fixed h-full w-3/4 bg-primary right-0 p-2 md:hidden flex flex-col gap-2 z-50 top-0">
-          <button className="h-10 w-10  rounded-full text-3xl flex items-center justify-center" onClick={() => {
-            setIsSideBarOnMobile(false)
-          }}>
+      {isSideBarOnMobile && (
+        <div className="fixed h-full w-3/4 bg-primary right-0 p-2 md:hidden flex flex-col gap-2 z-50 top-0">
+          <button
+            className="h-10 w-10  rounded-full text-3xl flex items-center justify-center"
+            onClick={() => {
+              setIsSideBarOnMobile(false);
+            }}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height={24}
@@ -310,7 +338,14 @@ const SideBar = () => {
           </button>
           <div className="flex flex-col gap-2 h-full">
             {/* nav1 */}
-            <button onClick={() => { router.push(`/admin/`); setIsSideBarOnMobile(false) }} className="h-12 min-h-[3rem] w-full rounded-xl border px-2 flex items-center gap-2">
+            <button
+              onClick={() => {
+                setRouterButtonClicked(true);
+                router.push(`/admin/`);
+                setIsSideBarOnMobile(false);
+              }}
+              className="h-12 min-h-[3rem] w-full rounded-xl border px-2 flex items-center gap-2"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height={36}
@@ -324,17 +359,23 @@ const SideBar = () => {
             </button>
 
             {navs.map((nav, index) => (
-              <button onClick={() => { router.push(`/admin/${nav.nav}`); setIsSideBarOnMobile(false) }} className="h-12 min-h-[3rem] w-full rounded-xl border px-2 flex items-center gap-2 text-white">
+              <button
+                onClick={() => {
+                  setRouterButtonClicked(true);
+                  router.push(`/admin/${nav.nav}`);
+                  setIsSideBarOnMobile(false);
+                }}
+                className="h-12 min-h-[3rem] w-full rounded-xl border px-2 flex items-center gap-2 text-white"
+              >
                 {nav.icon}
                 <h1 className="text-white font-semibold text-xl">{nav.name}</h1>
               </button>
             ))}
           </div>
-        </div>)
-      }
+        </div>
+      )}
     </>
   );
 };
 
 export default SideBar;
-

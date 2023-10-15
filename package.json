@@ -31,6 +31,8 @@
     "jspdf": "^2.5.1",
     "next": "^13.5.4",
     "next-urql": "^5.0.2",
+    "nextjs-toploader": "^1.4.2",
+    "nprogress": "^0.2.0",
     "postcss": "^8.4.31",
     "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2",
@@ -52,6 +54,7 @@
     "@parcel/watcher": "^2.2.0",
     "@types/aos": "^3.0.5",
     "@types/file-saver": "^2.0.5",
+    "@types/nprogress": "^0.2.1",
     "daisyui": "^3.5.1",
     "typescript": "^5.1.6"
   }

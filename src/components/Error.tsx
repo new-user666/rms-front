@@ -1,13 +1,20 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useGlobalContext } from "@/context/context";
+import NProgress from "nprogress";
+// import "./styles/nprogress.css";
 
 const ErrorPage = () => {
-
-  const router = useRouter()
+  const router = useRouter();
 
   const { data, setData } = useGlobalContext();
+  const [routerButtonClicked, setRouterButtonClicked] = useState(false);
+  NProgress.configure({ showSpinner: false });
+
+  useEffect(() => {
+    routerButtonClicked ? NProgress.start() : null;
+  }, [routerButtonClicked]);
 
   return (
     <>
@@ -42,8 +49,10 @@ const ErrorPage = () => {
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6 cursor-pointer">
               <p
-                onClick={() => router.push(`${data.admin ? '/admin' : '/'}`)}
-
+                onClick={() => {
+                  setRouterButtonClicked(true);
+                  router.push(`${data.admin ? "/admin" : "/"}`);
+                }}
                 className="rounded-md bg-secondary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secodarybg-secondary"
               >
                 Go back home

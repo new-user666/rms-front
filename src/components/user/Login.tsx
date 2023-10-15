@@ -19,6 +19,7 @@ import {
   LoginUserMutation,
   LoginUserMutationVariables,
 } from "@/gql/graphql";
+import NProgress from "nprogress";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -27,7 +28,12 @@ const LoginPage = () => {
   const { data, setData } = useGlobalContext();
 
   const [state, LoginMutation] = useMutation(LoginUserDocument);
+  const [routerButtonClicked, setRouterButtonClicked] = useState(false);
+  NProgress.configure({ showSpinner: false });
 
+  useEffect(() => {
+    routerButtonClicked ? NProgress.start() : null;
+  }, [routerButtonClicked]);
   const {
     register,
     handleSubmit,
@@ -54,6 +60,7 @@ const LoginPage = () => {
         },
         token: datas.data?.login.token,
       });
+      setRouterButtonClicked(true);
       router.push("/admin");
     }
     reset();

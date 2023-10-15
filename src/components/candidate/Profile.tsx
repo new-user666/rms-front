@@ -6,7 +6,8 @@ import ResultListIpad from "./ResultListIpad";
 import ProgramListPhone from "./ProgramListPhone";
 import ResultListPhone from "./ResultListPhone";
 
-import { useRouter } from "next/navigation"
+import { useRouter } from "next/navigation";
+import NProgress from "nprogress";
 interface Props {
   candidate: Candidate;
   candidateSportsPoint: number;
@@ -18,7 +19,7 @@ export default function ProgramAndResultDesktop(props: Props) {
     CandidateProgramme[]
   >([]);
 
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
     let candidateProgrammes: CandidateProgramme[] = [];
@@ -34,6 +35,10 @@ export default function ProgramAndResultDesktop(props: Props) {
   const [allOrIndividualOrGroup, setAllOrIndividualOrGroup] = useState("all");
   const [allOrIndividualOrGroupResult, setAllOrIndividualOrGroupResult] =
     useState("all");
+
+  const [routerButtonClicked, setRouterButtonClicked] = useState(false);
+  NProgress.configure({ showSpinner: false });
+
   const allPrograms = props?.candidate?.candidateProgrammes;
   const individualPrograms = props?.candidate?.candidateProgrammes?.filter(
     function (programme) {
@@ -85,13 +90,19 @@ export default function ProgramAndResultDesktop(props: Props) {
   return (
     <>
       <button
-        onClick={() => router.push('/')}
+        onClick={() => {
+          setRouterButtonClicked(true);
+          router.push("/");
+        }}
         type="button"
         data-te-ripple-init=""
         data-te-ripple-color="light"
         className="inline-block fixed top-5 right-8 bg-white hover:bg-gray-300 rounded-full md:bg-primary p-2 uppercase leading-normal text-white md:shadow-black shadow-white shadow-[0_4px_9px_-4px_#3b71ca] md:hover:bg-secondary transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
       >
-        <svg className="h-6 w-6  lg:w-8 lg:h-8 md:fill-white fill-primary" viewBox="0 -960 960 960">
+        <svg
+          className="h-6 w-6  lg:w-8 lg:h-8 md:fill-white fill-primary"
+          viewBox="0 -960 960 960"
+        >
           <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
         </svg>
       </button>
@@ -168,23 +179,9 @@ export default function ProgramAndResultDesktop(props: Props) {
             {/* list */}
 
             <div className="mx-5 flex flex-col items-center overflow-y-auto gap-5 h-[80%] py-5">
-
               {/* programslist Desktop */}
               {allOrIndividualOrGroup === "all"
                 ? allPrograms?.map((programme) => (
-                  <div className="h-12 rounded-xl w-full bg-accent flex flex-row justify-between text-sm px-5">
-                    <h1 className="mt-4">
-                      {programme?.programme?.programCode}
-                    </h1>
-                    <h1 className="mt-4">{programme?.programme?.name}</h1>
-                    <div className="text-lt flex flex-col items-end mt-2">
-                      {/* <p>-</p> */}
-                      {/* <p>-</p> */}
-                    </div>
-                  </div>
-                ))
-                : allOrIndividualOrGroup === "individual"
-                  ? individualPrograms?.map((programme) => (
                     <div className="h-12 rounded-xl w-full bg-accent flex flex-row justify-between text-sm px-5">
                       <h1 className="mt-4">
                         {programme?.programme?.programCode}
@@ -196,20 +193,33 @@ export default function ProgramAndResultDesktop(props: Props) {
                       </div>
                     </div>
                   ))
-                  : allOrIndividualOrGroup === "group"
-                    ? groupPrograms?.map((programme) => (
-                      <div className="h-12 rounded-xl w-full bg-accent flex flex-row justify-between text-sm px-5">
-                        <h1 className="mt-4">
-                          {programme?.programme?.programCode}
-                        </h1>
-                        <h1 className="mt-4">{programme?.programme?.name}</h1>
-                        <div className="text-lt flex flex-col items-end mt-2">
-                          {/* <p>-</p> */}
-                          {/* <p>-</p> */}
-                        </div>
+                : allOrIndividualOrGroup === "individual"
+                ? individualPrograms?.map((programme) => (
+                    <div className="h-12 rounded-xl w-full bg-accent flex flex-row justify-between text-sm px-5">
+                      <h1 className="mt-4">
+                        {programme?.programme?.programCode}
+                      </h1>
+                      <h1 className="mt-4">{programme?.programme?.name}</h1>
+                      <div className="text-lt flex flex-col items-end mt-2">
+                        {/* <p>-</p> */}
+                        {/* <p>-</p> */}
                       </div>
-                    ))
-                    : null}
+                    </div>
+                  ))
+                : allOrIndividualOrGroup === "group"
+                ? groupPrograms?.map((programme) => (
+                    <div className="h-12 rounded-xl w-full bg-accent flex flex-row justify-between text-sm px-5">
+                      <h1 className="mt-4">
+                        {programme?.programme?.programCode}
+                      </h1>
+                      <h1 className="mt-4">{programme?.programme?.name}</h1>
+                      <div className="text-lt flex flex-col items-end mt-2">
+                        {/* <p>-</p> */}
+                        {/* <p>-</p> */}
+                      </div>
+                    </div>
+                  ))
+                : null}
             </div>
           </div>
           <div className="bg-white h-5/6 w-2/3 rounded-3xl overflow-hidden">
