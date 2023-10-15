@@ -5,17 +5,20 @@ import { useEffect, useState } from "react";
 import TabCandidates from "./TabCandidates";
 import TabResults from "./TabResults";
 import { useRouter } from "next/navigation";
+import NProgress from "nprogress";
 
 interface Props {
   programme: Programme;
 }
 
 export default function TabView(props: Props) {
-  const router = useRouter()
+  const router = useRouter();
   const { programme } = props;
 
   const [candidatesOrResults, setCandidatesOrResults] = useState("candidates");
   const [dateTime, setDateTime] = useState<Date>();
+  const [routerButtonClicked, setRouterButtonClicked] = useState(false);
+  NProgress.configure({ showSpinner: false });
 
   const active = {
     div: "rounded-xl text-sm h-8 bg-primary border border-primary flex items-center",
@@ -32,6 +35,10 @@ export default function TabView(props: Props) {
     }
     console.log(dateTime);
   }, []);
+
+  useEffect(() => {
+    routerButtonClicked ? NProgress.start() : null;
+  }, [routerButtonClicked]);
 
   function timeFormat12Hour() {
     let h: any = dateTime?.getUTCHours();
@@ -56,17 +63,22 @@ export default function TabView(props: Props) {
     return formatedTimeString;
   }
 
-
   return (
     <div className="xl:flex h-full w-full hidden 2xl:hidden">
-       <button
-        onClick={() => router.push('/')}
+      <button
+        onClick={() => {
+          setRouterButtonClicked(true);
+          router.push("/");
+        }}
         type="button"
         data-te-ripple-init=""
         data-te-ripple-color="light"
         className="inline-block fixed top-5 right-8 bg-white hover:bg-gray-300 rounded-full md:bg-primary p-2 uppercase leading-normal text-white md:shadow-black shadow-white shadow-[0_4px_9px_-4px_#3b71ca] md:hover:bg-secondary transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
       >
-        <svg className="h-6 w-6  lg:w-8 lg:h-8 md:fill-white fill-primary" viewBox="0 -960 960 960">
+        <svg
+          className="h-6 w-6  lg:w-8 lg:h-8 md:fill-white fill-primary"
+          viewBox="0 -960 960 960"
+        >
           <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
         </svg>
       </button>
@@ -81,7 +93,7 @@ export default function TabView(props: Props) {
             type="text"
             disabled
             className="h-10 w-11/12 bg-white rounded-lg text-md placeholder:pl-2 placeholder:text-primary"
-            placeholder={`${programme?.name ? programme?.name:''}`}
+            placeholder={`${programme?.name ? programme?.name : ""}`}
           />
         </div>
         <div className="flex w-full px-4">
@@ -91,7 +103,9 @@ export default function TabView(props: Props) {
               type="text"
               disabled
               className="h-10 w-11/12 bg-white rounded-lg text-md placeholder:pl-2 placeholder:text-primary"
-              placeholder={`${programme?.programCode ? programme?.programCode:''}`}
+              placeholder={`${
+                programme?.programCode ? programme?.programCode : ""
+              }`}
             />
           </div>
           <div className="flex flex-col w-2/3">
@@ -100,7 +114,9 @@ export default function TabView(props: Props) {
               type="text"
               disabled
               className="h-10 w-11/12 bg-white rounded-lg text-md placeholder:pl-2 placeholder:text-primary"
-              placeholder={`0${programme?.candidateCount ? programme?.candidateCount: ''}`}
+              placeholder={`0${
+                programme?.candidateCount ? programme?.candidateCount : ""
+              }`}
             />
           </div>
         </div>
@@ -110,7 +126,9 @@ export default function TabView(props: Props) {
             type="text"
             disabled
             className="h-10 w-11/12 bg-white rounded-lg text-md placeholder:pl-2 placeholder:text-primary"
-            placeholder={`${programme?.category?.name?programme?.category?.name:''}`}
+            placeholder={`${
+              programme?.category?.name ? programme?.category?.name : ""
+            }`}
           />
         </div>
         <div className="flex flex-col w-full pl-4">
@@ -119,7 +137,7 @@ export default function TabView(props: Props) {
             type="text"
             disabled
             className="h-10 w-11/12 bg-white rounded-lg text-md placeholder:pl-2 placeholder:text-primary"
-            placeholder={`${programme?.duration?programme?.duration:''}`}
+            placeholder={`${programme?.duration ? programme?.duration : ""}`}
           />
         </div>
         <div className="flex flex-col w-full pl-4">
@@ -138,7 +156,9 @@ export default function TabView(props: Props) {
               type="text"
               disabled
               className="h-10 w-11/12 bg-white rounded-lg text-md placeholder:pl-2 placeholder:text-primary"
-              placeholder={`${programme?.mode?programme?.mode?.replace('_',' '):''}`}
+              placeholder={`${
+                programme?.mode ? programme?.mode?.replace("_", " ") : ""
+              }`}
             />
           </div>
           <div className="flex flex-col w-1/3">
@@ -147,7 +167,9 @@ export default function TabView(props: Props) {
               type="text"
               disabled
               className="h-10 w-11/12 bg-white rounded-lg text-md placeholder:pl-2 placeholder:text-primary"
-              placeholder={`${programme?.model?programme?.model?.toUpperCase():''}`}
+              placeholder={`${
+                programme?.model ? programme?.model?.toUpperCase() : ""
+              }`}
             />
           </div>
           <div className="flex flex-col w-1/3">
@@ -156,7 +178,7 @@ export default function TabView(props: Props) {
               type="text"
               disabled
               className="h-10 w-11/12 bg-white rounded-lg text-md placeholder:pl-2 placeholder:text-primary"
-              placeholder={`${programme?.type?programme?.type:''}`}
+              placeholder={`${programme?.type ? programme?.type : ""}`}
             />
           </div>
         </div>

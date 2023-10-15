@@ -3,6 +3,8 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { Suspense } from 'react'
+import { LoadingBar } from '@/components/LoadingBar'
 
 export const metadata: Metadata = {
   title: 'Realia 23',
@@ -25,6 +27,9 @@ export default function RootLayout({
         <link rel='icon' href='/favicon.ico'/>
       </head>
       <body>
+      <Suspense fallback={null}>
+          <LoadingBar />
+        </Suspense>
         <GlobalContextProvider >
           {children}
           <ToastContainer

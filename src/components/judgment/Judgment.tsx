@@ -184,7 +184,6 @@ const Judgement = (props: Props) => {
 
   function generateArray(number: number) {
     const resultArray = [];
-
     for (let i = 0; i <= number; i++) {
       resultArray.push(i);
     }

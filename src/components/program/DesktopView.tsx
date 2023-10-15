@@ -3,6 +3,7 @@
 import { CandidateProgramme, Programme } from "@/gql/graphql";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import NProgress from "nprogress";
 
 interface Props {
   programme: Programme;
@@ -11,28 +12,36 @@ interface Props {
 export default function DesktopView(props: Props) {
   const { programme } = props;
 
-  const router = useRouter()
+  const router = useRouter();
 
   const [resultedCandidates, setResultedCandidates] = useState<
     CandidateProgramme[]
   >([]);
 
+  const [routerButtonClicked, setRouterButtonClicked] = useState(false);
+  NProgress.configure({ showSpinner: false });
+
   useEffect(() => {
     console.log(programme);
-    
+
     let candidateResults: CandidateProgramme[] = [];
 
-    if(programme?.resultPublished === true){
+    if (programme?.resultPublished === true) {
       programme?.candidateProgramme?.map((candidate) => {
         console.log(candidate);
-        (candidate?.position?.name !== null || candidate?.grade?.name !== null) &&
+        (candidate?.position?.name !== null ||
+          candidate?.grade?.name !== null) &&
           candidateResults.push(candidate);
       });
       setResultedCandidates(candidateResults);
     }
- 
+
     console.log(candidateResults);
   }, []);
+
+  useEffect(() => {
+    routerButtonClicked ? NProgress.start() : null;
+  }, [routerButtonClicked]);
 
   const activeButton = {
     div: "rounded-xl text-sm h-6 bg-primary border border-primary flex items-center",
@@ -76,14 +85,20 @@ export default function DesktopView(props: Props) {
   });
   return (
     <div className="2xl:flex h-full w-full hidden">
-          <button
-        onClick={() => router.push('/')}
+      <button
+        onClick={() => {
+          setRouterButtonClicked(true);
+          router.push("/");
+        }}
         type="button"
         data-te-ripple-init=""
         data-te-ripple-color="light"
         className="inline-block fixed top-5 right-8 bg-white hover:bg-gray-300 rounded-full md:bg-primary p-2 uppercase leading-normal text-white md:shadow-black shadow-white shadow-[0_4px_9px_-4px_#3b71ca] md:hover:bg-secondary transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
       >
-        <svg className="h-6 w-6  lg:w-8 lg:h-8 md:fill-white fill-primary" viewBox="0 -960 960 960">
+        <svg
+          className="h-6 w-6  lg:w-8 lg:h-8 md:fill-white fill-primary"
+          viewBox="0 -960 960 960"
+        >
           <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
         </svg>
       </button>
@@ -98,7 +113,7 @@ export default function DesktopView(props: Props) {
             type="text"
             disabled
             className="h-10 w-11/12 bg-white rounded-lg text-md placeholder:pl-2 placeholder:text-primary"
-            placeholder={`${programme?programme?.name:''}`}
+            placeholder={`${programme ? programme?.name : ""}`}
           />
         </div>
         <div className="flex w-full px-4">
@@ -108,7 +123,7 @@ export default function DesktopView(props: Props) {
               type="text"
               disabled
               className="h-10 w-11/12 bg-white rounded-lg text-md placeholder:pl-2 placeholder:text-primary"
-              placeholder={`${programme?programme?.programCode:''}`}
+              placeholder={`${programme ? programme?.programCode : ""}`}
             />
           </div>
           <div className="flex flex-col w-2/3">
@@ -117,7 +132,7 @@ export default function DesktopView(props: Props) {
               type="text"
               disabled
               className="h-10 w-11/12 bg-white rounded-lg text-md placeholder:pl-2 placeholder:text-primary"
-              placeholder={`0${programme?programme?.candidateCount:''}`}
+              placeholder={`0${programme ? programme?.candidateCount : ""}`}
             />
           </div>
         </div>
@@ -127,7 +142,7 @@ export default function DesktopView(props: Props) {
             type="text"
             disabled
             className="h-10 w-11/12 bg-white rounded-lg text-md placeholder:pl-2 placeholder:text-primary"
-            placeholder={`${programme?programme?.category?.name:''}`}
+            placeholder={`${programme ? programme?.category?.name : ""}`}
           />
         </div>
         <div className="flex flex-col w-full pl-4">
@@ -136,7 +151,7 @@ export default function DesktopView(props: Props) {
             type="text"
             disabled
             className="h-10 w-11/12 bg-white rounded-lg text-md placeholder:pl-2 placeholder:text-primary"
-            placeholder={`${programme?programme?.duration:''}`}
+            placeholder={`${programme ? programme?.duration : ""}`}
           />
         </div>
         <div className="flex flex-col w-full pl-4">
@@ -155,7 +170,9 @@ export default function DesktopView(props: Props) {
               type="text"
               disabled
               className="h-10 w-11/12 bg-white rounded-lg text-md placeholder:pl-2 placeholder:text-primary"
-              placeholder={`${programme?programme?.mode?.replace('_', ' '):''}`}
+              placeholder={`${
+                programme ? programme?.mode?.replace("_", " ") : ""
+              }`}
             />
           </div>
           <div className="flex flex-col w-1/3">
@@ -164,7 +181,9 @@ export default function DesktopView(props: Props) {
               type="text"
               disabled
               className="h-10 w-11/12 bg-white rounded-lg text-md placeholder:pl-2 placeholder:text-primary"
-              placeholder={`${programme?programme?.model?.toUpperCase():''}`}
+              placeholder={`${
+                programme ? programme?.model?.toUpperCase() : ""
+              }`}
             />
           </div>
           <div className="flex flex-col w-1/3">
@@ -173,7 +192,7 @@ export default function DesktopView(props: Props) {
               type="text"
               disabled
               className="h-10 w-11/12 bg-white rounded-lg text-md placeholder:pl-2 placeholder:text-primary"
-              placeholder={`${programme?programme?.type:''}`}
+              placeholder={`${programme ? programme?.type : ""}`}
             />
           </div>
         </div>
@@ -519,7 +538,6 @@ export default function DesktopView(props: Props) {
               <div className="flex flex-col h-5/6 items-center pt-5 gap-5 overflow-y-auto">
                 {/* result List */}
                 {resultedCandidates.length > 0 ? (
-
                   allOrSingleTeamResult === "all" ? (
                     allCandidatesResult?.map((candidate) => (
                       <div className="flex items-center h-16 min-h-[4rem] bg-accent w-11/12 rounded-xl">
@@ -636,7 +654,6 @@ export default function DesktopView(props: Props) {
                       </div>
                     ))
                   ) : null
-
                 ) : (
                   <p>No Results Found</p>
                 )}

@@ -5,7 +5,6 @@ const imageUrls = [
   '/img/2.jpg',
   '/img/3.jpg',
   '/img/4.jpg',
-
 ];
 
 function Home() {

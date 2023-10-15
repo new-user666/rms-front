@@ -6,7 +6,8 @@ import ResultListIpad from "./ResultListIpad";
 import ProgramListPhone from "./ProgramListPhone";
 import ResultListPhone from "./ResultListPhone";
 
-import { useRouter } from "next/navigation"
+import { useRouter } from "next/navigation";
+import NProgress from "nprogress";
 interface Props {
   candidate: Candidate;
 }
@@ -16,7 +17,7 @@ export default function ProgramAndResultDesktop(props: Props) {
     CandidateProgramme[]
   >([]);
 
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
     let candidateProgrammes: CandidateProgramme[] = [];
@@ -32,6 +33,10 @@ export default function ProgramAndResultDesktop(props: Props) {
   const [allOrIndividualOrGroup, setAllOrIndividualOrGroup] = useState("all");
   const [allOrIndividualOrGroupResult, setAllOrIndividualOrGroupResult] =
     useState("all");
+
+  const [routerButtonClicked, setRouterButtonClicked] = useState(false);
+  NProgress.configure({ showSpinner: false });
+
   const allPrograms = props?.candidate?.candidateProgrammes;
   const individualPrograms = props?.candidate?.candidateProgrammes?.filter(
     function (programme) {
@@ -83,13 +88,19 @@ export default function ProgramAndResultDesktop(props: Props) {
   return (
     <>
       <button
-        onClick={() => router.push('/')}
+        onClick={() => {
+          setRouterButtonClicked(true);
+          router.push("/");
+        }}
         type="button"
         data-te-ripple-init=""
         data-te-ripple-color="light"
         className="inline-block fixed top-5 right-8 bg-white hover:bg-gray-300 rounded-full md:bg-primary p-2 uppercase leading-normal text-white md:shadow-black shadow-white shadow-[0_4px_9px_-4px_#3b71ca] md:hover:bg-secondary transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
       >
-        <svg className="h-6 w-6  lg:w-8 lg:h-8 md:fill-white fill-primary" viewBox="0 -960 960 960">
+        <svg
+          className="h-6 w-6  lg:w-8 lg:h-8 md:fill-white fill-primary"
+          viewBox="0 -960 960 960"
+        >
           <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
         </svg>
       </button>
@@ -108,55 +119,61 @@ export default function ProgramAndResultDesktop(props: Props) {
             <hr className="border" />
             <div className="mx-5 py-3 flex gap-3">
               <div
-                className={`${allOrIndividualOrGroup === "all"
+                className={`${
+                  allOrIndividualOrGroup === "all"
                     ? specialButtonProgram.div
                     : commonButtonProgram.div
-                  }`}
+                }`}
               >
                 <button
                   onClick={() => {
                     setAllOrIndividualOrGroup("all");
                   }}
-                  className={`${allOrIndividualOrGroup === "all"
+                  className={`${
+                    allOrIndividualOrGroup === "all"
                       ? specialButtonProgram.button
                       : commonButtonProgram.button
-                    }`}
+                  }`}
                 >
                   All
                 </button>
               </div>
               <div
-                className={`${allOrIndividualOrGroup === "individual"
+                className={`${
+                  allOrIndividualOrGroup === "individual"
                     ? specialButtonProgram.div
                     : commonButtonProgram.div
-                  }`}
+                }`}
               >
                 <button
                   onClick={() => {
                     setAllOrIndividualOrGroup("individual");
                   }}
-                  className={`${allOrIndividualOrGroup === "individual"
+                  className={`${
+                    allOrIndividualOrGroup === "individual"
                       ? specialButtonProgram.button
                       : commonButtonProgram.button
-                    }`}
+                  }`}
                 >
                   Individual
                 </button>
               </div>
               <div
-                className={`${allOrIndividualOrGroup === "group"
+                className={`${
+                  allOrIndividualOrGroup === "group"
                     ? specialButtonProgram.div
                     : commonButtonProgram.div
-                  }`}
+                }`}
               >
                 <button
                   onClick={() => {
                     setAllOrIndividualOrGroup("group");
                   }}
-                  className={`${allOrIndividualOrGroup === "group"
+                  className={`${
+                    allOrIndividualOrGroup === "group"
                       ? specialButtonProgram.button
                       : commonButtonProgram.button
-                    }`}
+                  }`}
                 >
                   Group
                 </button>
@@ -166,23 +183,9 @@ export default function ProgramAndResultDesktop(props: Props) {
             {/* list */}
 
             <div className="mx-5 flex flex-col items-center overflow-y-auto gap-5 h-[80%] py-5">
-
               {/* programslist Desktop */}
               {allOrIndividualOrGroup === "all"
                 ? allPrograms?.map((programme) => (
-                  <div className="h-12 rounded-xl w-full bg-accent flex flex-row justify-between text-sm px-5">
-                    <h1 className="mt-4">
-                      {programme?.programme?.programCode}
-                    </h1>
-                    <h1 className="mt-4">{programme?.programme?.name}</h1>
-                    <div className="text-lt flex flex-col items-end mt-2">
-                      {/* <p>-</p> */}
-                      {/* <p>-</p> */}
-                    </div>
-                  </div>
-                ))
-                : allOrIndividualOrGroup === "individual"
-                  ? individualPrograms?.map((programme) => (
                     <div className="h-12 rounded-xl w-full bg-accent flex flex-row justify-between text-sm px-5">
                       <h1 className="mt-4">
                         {programme?.programme?.programCode}
@@ -194,20 +197,33 @@ export default function ProgramAndResultDesktop(props: Props) {
                       </div>
                     </div>
                   ))
-                  : allOrIndividualOrGroup === "group"
-                    ? groupPrograms?.map((programme) => (
-                      <div className="h-12 rounded-xl w-full bg-accent flex flex-row justify-between text-sm px-5">
-                        <h1 className="mt-4">
-                          {programme?.programme?.programCode}
-                        </h1>
-                        <h1 className="mt-4">{programme?.programme?.name}</h1>
-                        <div className="text-lt flex flex-col items-end mt-2">
-                          {/* <p>-</p> */}
-                          {/* <p>-</p> */}
-                        </div>
+                : allOrIndividualOrGroup === "individual"
+                ? individualPrograms?.map((programme) => (
+                    <div className="h-12 rounded-xl w-full bg-accent flex flex-row justify-between text-sm px-5">
+                      <h1 className="mt-4">
+                        {programme?.programme?.programCode}
+                      </h1>
+                      <h1 className="mt-4">{programme?.programme?.name}</h1>
+                      <div className="text-lt flex flex-col items-end mt-2">
+                        {/* <p>-</p> */}
+                        {/* <p>-</p> */}
                       </div>
-                    ))
-                    : null}
+                    </div>
+                  ))
+                : allOrIndividualOrGroup === "group"
+                ? groupPrograms?.map((programme) => (
+                    <div className="h-12 rounded-xl w-full bg-accent flex flex-row justify-between text-sm px-5">
+                      <h1 className="mt-4">
+                        {programme?.programme?.programCode}
+                      </h1>
+                      <h1 className="mt-4">{programme?.programme?.name}</h1>
+                      <div className="text-lt flex flex-col items-end mt-2">
+                        {/* <p>-</p> */}
+                        {/* <p>-</p> */}
+                      </div>
+                    </div>
+                  ))
+                : null}
             </div>
           </div>
           <div className="bg-white h-5/6 w-2/3 rounded-3xl overflow-hidden">
@@ -217,55 +233,61 @@ export default function ProgramAndResultDesktop(props: Props) {
             <hr className="border" />
             <div className="mx-5 py-3 flex gap-3">
               <div
-                className={`${allOrIndividualOrGroupResult === "all"
+                className={`${
+                  allOrIndividualOrGroupResult === "all"
                     ? specialButtonResults.div
                     : commonButtonResults.div
-                  }`}
+                }`}
               >
                 <button
                   onClick={() => {
                     setAllOrIndividualOrGroupResult("all");
                   }}
-                  className={`${allOrIndividualOrGroupResult === "all"
+                  className={`${
+                    allOrIndividualOrGroupResult === "all"
                       ? specialButtonResults.button
                       : commonButtonResults.button
-                    }`}
+                  }`}
                 >
                   All
                 </button>
               </div>
               <div
-                className={`${allOrIndividualOrGroupResult === "individual"
+                className={`${
+                  allOrIndividualOrGroupResult === "individual"
                     ? specialButtonResults.div
                     : commonButtonResults.div
-                  }`}
+                }`}
               >
                 <button
                   onClick={() => {
                     setAllOrIndividualOrGroupResult("individual");
                   }}
-                  className={`${allOrIndividualOrGroupResult === "individual"
+                  className={`${
+                    allOrIndividualOrGroupResult === "individual"
                       ? specialButtonResults.button
                       : commonButtonResults.button
-                    }`}
+                  }`}
                 >
                   Individual
                 </button>
               </div>
               <div
-                className={`${allOrIndividualOrGroupResult === "group"
+                className={`${
+                  allOrIndividualOrGroupResult === "group"
                     ? specialButtonResults.div
                     : commonButtonResults.div
-                  }`}
+                }`}
               >
                 <button
                   onClick={() => {
                     setAllOrIndividualOrGroupResult("group");
                   }}
-                  className={`${allOrIndividualOrGroupResult === "group"
+                  className={`${
+                    allOrIndividualOrGroupResult === "group"
                       ? specialButtonResults.button
                       : commonButtonResults.button
-                    }`}
+                  }`}
                 >
                   Group
                 </button>
@@ -364,37 +386,41 @@ export default function ProgramAndResultDesktop(props: Props) {
           {/* slider */}
           <div className="h-16 w-full flex items-center gap-5 justify-center">
             <div
-              className={`${programsOrResults === "programs"
+              className={`${
+                programsOrResults === "programs"
                   ? programsButton.div
                   : resultsButton.div
-                }`}
+              }`}
             >
               <button
                 onClick={() => {
                   setProgramsOrResults("programs");
                 }}
-                className={`${programsOrResults === "programs"
+                className={`${
+                  programsOrResults === "programs"
                     ? programsButton.button
                     : resultsButton.button
-                  }`}
+                }`}
               >
                 Programs
               </button>
             </div>
             <div
-              className={`${programsOrResults === "results"
+              className={`${
+                programsOrResults === "results"
                   ? programsButton.div
                   : resultsButton.div
-                }`}
+              }`}
             >
               <button
                 onClick={() => {
                   setProgramsOrResults("results");
                 }}
-                className={`${programsOrResults === "results"
+                className={`${
+                  programsOrResults === "results"
                     ? programsButton.button
                     : resultsButton.button
-                  }`}
+                }`}
               >
                 Results
               </button>
@@ -420,10 +446,11 @@ export default function ProgramAndResultDesktop(props: Props) {
             <div
               className="rounded-full h-36 w-36 border-4 bg-white flex flex-col items-end relative bg-cover"
               style={{
-                backgroundImage: `url(${props?.candidate?.imageId
+                backgroundImage: `url(${
+                  props?.candidate?.imageId
                     ? `https://drive.google.com/uc?id=${props?.candidate?.imageId}`
                     : "https://banner2.cleanpng.com/20180410/bbw/kisspng-avatar-user-medicine-surgery-patient-avatar-5acc9f7a7cb983.0104600115233596105109.jpg"
-                  })`,
+                })`,
               }}
             >
               {/* <img
@@ -481,37 +508,41 @@ export default function ProgramAndResultDesktop(props: Props) {
             {/* slider */}
             <div className="h-1/10 w-full flex items-center gap-5 justify-center pb-3">
               <div
-                className={`${programsOrResults === "programs"
+                className={`${
+                  programsOrResults === "programs"
                     ? programsButton.div
                     : resultsButton.div
-                  }`}
+                }`}
               >
                 <button
                   onClick={() => {
                     setProgramsOrResults("programs");
                   }}
-                  className={`${programsOrResults === "programs"
+                  className={`${
+                    programsOrResults === "programs"
                       ? programsButton.button
                       : resultsButton.button
-                    }`}
+                  }`}
                 >
                   Programs
                 </button>
               </div>
               <div
-                className={`${programsOrResults === "results"
+                className={`${
+                  programsOrResults === "results"
                     ? programsButton.div
                     : resultsButton.div
-                  }`}
+                }`}
               >
                 <button
                   onClick={() => {
                     setProgramsOrResults("results");
                   }}
-                  className={`${programsOrResults === "results"
+                  className={`${
+                    programsOrResults === "results"
                       ? programsButton.button
                       : resultsButton.button
-                    }`}
+                  }`}
                 >
                   Results
                 </button>

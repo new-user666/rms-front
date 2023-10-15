@@ -1,11 +1,22 @@
 "use client"
 import NotFound from '@/components/candidate/NotFound'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import NProgress from "nprogress";
+// import "./styles/nprogress.css";
 
 const page = () => {
-    const [chestNo, setChestNo] = React.useState("")
+    const [chestNo, setChestNo] = useState("")
+    const [routerButtonClicked, setRouterButtonClicked] = useState(false);
+  NProgress.configure({ showSpinner: false })
     const router = useRouter()
+
+    useEffect(() => {
+    
+        console.log(routerButtonClicked);
+    
+        routerButtonClicked ? NProgress.start() : null;
+      }, [routerButtonClicked]);
     return (
         <div className="p-8 h-52 w-96 fixed top-1/2 -translate-y-1/2 bg-white rounded-xl left-1/2 shadow-2xl -translate-x-1/2 flex flex-col items-center gap-5">
             <img
@@ -26,11 +37,13 @@ const page = () => {
 
             <div className="flex w-full justify-center gap-2">
                 <button onClick={() => {
+                    setRouterButtonClicked(true);
                     router.push(`/`)
                 }} className="bg-secondary hover:bg-primary rounded-full h-8 w-1/4 text-lg text-white font-semibold transition-all duration-500">
                     BACK
                 </button>
                 <button onClick={() => {
+                    setRouterButtonClicked(true);
                     router.push(`/program/${chestNo}`)
                 }} className="bg-secondary hover:bg-primary rounded-full h-8 w-1/4 text-lg text-white font-semibold transition-all duration-500">
                     SUBMIT

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "aos/dist/aos.css";
 import Aos from "aos";
 import { useRouter } from "next/navigation";
@@ -7,14 +7,25 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { LiveIcon, TableIcon, UserIcon } from "@/icons/home";
 import { motion } from "framer-motion";
+import NProgress from "nprogress";
+// import "./styles/nprogress.css";
+
 function Description() {
-  const router = useRouter()
+  const router = useRouter();
+  const [routerButtonClicked, setRouterButtonClicked] = useState(false);
+  NProgress.configure({ showSpinner: false });
+
   useEffect(() => {
     Aos.init({
       duration: 1500,
     });
   }, []);
 
+  useEffect(() => {
+    console.log(routerButtonClicked);
+
+    routerButtonClicked ? NProgress.start() : null;
+  }, [routerButtonClicked]);
   return (
     <section className="min-h-screen">
       <div className="w-full p-16 flex justify-center lg:justify-between align-center">
@@ -44,7 +55,10 @@ function Description() {
       />
       <div className="text-white mt flex my-20 text-center flex-wrap justify-center gap-6 text-3xl font-bold font-nexa">
         <motion.div
-          onClick={()=>router.push('/result')}
+          onClick={() => {
+            setRouterButtonClicked(true);
+            router.push("/result");
+          }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           whileHover={{ scale: 1.07 }}
@@ -64,7 +78,9 @@ function Description() {
           </div>
         </motion.div>
         <motion.div
-          onClick={()=>router.push('/')}
+          onClick={() => 
+            router.push("/")
+          }
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           whileHover={{ scale: 1.07 }}
@@ -83,7 +99,10 @@ function Description() {
           </div>
         </motion.div>
         <motion.div
-        onClick={()=>router.push('/candidate')}
+          onClick={() => {
+            setRouterButtonClicked(true);
+            router.push("/candidate");
+          }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           whileHover={{ scale: 1.07 }}
